@@ -24,6 +24,21 @@
       "id": 5,
       "name": "Ramanath",
       "salary": "30000"
+    },
+    {
+      "id": 6,
+      "name": "Vaasanth",
+      "salary": "40000"
+    },
+    {
+      "id": 7,
+      "name": "Geetha",
+      "salary": "25000"
+    },
+    {
+      "id": 8,
+      "name": "Prateeksha",
+      "salary": "15000"
     }
   ]
 }
