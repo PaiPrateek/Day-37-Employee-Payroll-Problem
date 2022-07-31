@@ -3,6 +3,8 @@ using EmployeePayroll;
 using RestSharp;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace RestAPI
 {
@@ -32,5 +34,31 @@ namespace RestAPI
                 System.Console.WriteLine("ID : " + emp.id + " Name : " + emp.name + " Salary : " + emp.salary);
             }
         }
+
+        //Add new employee details
+        [Test]
+        public void onCallAddEmployeeList()
+        {
+            //Arrange
+            RestRequest request = new RestRequest("/employees ", Method.Post);
+            JObject jobject = new JObject();
+            jobject.Add("name", "Ramanath");
+            jobject.Add("salary", "30000");
+
+            request.AddParameter("application/json", jobject, ParameterType.RequestBody);
+
+            //Act
+            RestResponse response = client.Execute(request);
+
+
+            //Assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
+
+            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+            Assert.AreEqual("Ramanath", dataResponse.name);
+            Assert.AreEqual("30000", dataResponse.salary);
+            System.Console.WriteLine(response.Content);
+        }
+
     }
 }
