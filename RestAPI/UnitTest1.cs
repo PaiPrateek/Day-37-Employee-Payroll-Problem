@@ -36,6 +36,8 @@ namespace RestAPI
         }
 
         //Add new employee details
+
+        // Add multiple Employee detalis 
         [Test]
         public void onCallAddEmployeeList()
         {
@@ -57,6 +59,30 @@ namespace RestAPI
             Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
             Assert.AreEqual("Ramanath", dataResponse.name);
             Assert.AreEqual("30000", dataResponse.salary);
+            System.Console.WriteLine(response.Content);
+        }
+
+        [Test]
+        public void onCallEditEmployeeList()
+        {
+            //Arrange
+            RestRequest request = new RestRequest("/employees/8 ", Method.Put);
+            JObject jobject = new JObject();
+            jobject.Add("name", "Prateeksha");
+            jobject.Add("salary", "10000");
+
+            request.AddParameter("application/json", jobject, ParameterType.RequestBody);
+
+            //Act
+            RestResponse response = client.Execute(request);
+
+
+            //Assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+
+            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+            Assert.AreEqual("Prateeksha", dataResponse.name);
+            Assert.AreEqual("10000", dataResponse.salary);
             System.Console.WriteLine(response.Content);
         }
 

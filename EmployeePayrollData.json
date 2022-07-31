@@ -36,9 +36,10 @@
       "salary": "25000"
     },
     {
-      "id": 8,
-      "name": "Prateeksha",
-      "salary": "15000"
+      "ID": 8,
+      "NAME": "Prateeksha",
+      "SALARY": "10000",
+      "id": 8
     }
   ]
 }
